@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // ES5 var全局定义
+        var a = []
+        for (var i = 0; i < 10; i++) {
+            a[i] = function () {
+                console.log(i);
+            };
+        }
+        a[6]();
+        // ES6 let写法 
+        var a = []
+        for (let i = 0; i < 10; i++) {
+            a[i] = function () {
+                console.log(i);
+            };
+        }
+        a[6]();
+
+        // let != var 不存在变量提升
+
+        // // 暂时性死区(TDZ)
+        // if (true) {
+        //     tmp = 'abc';        // TDZ开始
+        //     console.log(tmp);
+
+        //     let tmp;            // TDZ结束
+        //     console.log(tmp);
+
+        //     tmp = 123;
+        //     console.log(tmp);
+        // }
+
+        // // let 不允许存在相同作用域中重复声明
+        // function() {
+        //     var a = 10;
+        //     let a = 1;
+        // }   // 报错
+
+        // function() {
+        //     let a = 10;
+        //     let a = 1;
+        // }   // 报错
+
+        // function func(arg) {
+        //     let arg;
+        // }   // 报错 局部变量
+
+        // 块级作用域 -> let
+        var tmp = new Date();
+        function f() {
+            console.log(tmp);
+            if (false) {
+                var tmp = "hello world"
+            }
+        }
+        f();    // undefined -> 变量提升
+
+        var s = 'hello';
+        for (var i = 0; i < s.length; i++) {
+            console.log(s[i]);
+        }
+        console.log(i);     // 变量 i 泄露成了全局变量
+
+        function f1() {
+            let n = 5;
+            if (true) {
+                let n = 10;
+            }
+            console.log(n);     // 输出 let n = 5 不受内层代码 let n =10 的影响
+        }
+
+        function f() { console.log('I am outside'); }
+        (function () {
+            if (false) {
+                function f() { console.log('I am inside'); }
+            }
+            f();
+        }());
+
+    </script>
+</body>
+
+</html>
