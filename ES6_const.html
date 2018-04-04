@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+
+    <script>
+
+        // 用于声明常量，只读
+        const PI = 3.1415;
+        console.log(PI);
+        PI = 3;
+
+        // const foo;      // 只声明不赋值直接报错！
+
+        if (true) {
+            const MAX = 5;
+        }   // const 和 let 一样 只在声明所在的块级作用域中有效
+        console.log(MAX);
+
+        if (true) {
+            console.log(MAX);
+            const MAX = 5;
+        }   // const 不存在变量提升 必须要先声明赋值再使用
+
+        // const 不允许重复声明
+        var message = "hello";
+        let age = 5;
+        const message = "Google";
+        const age = 30;
+
+        // 冻结对象 -> 使 foo 这个对象不起作用
+        const foo = Object.freeze({});
+        foo.prpo = 123;
+
+        // 跨模块常量
+            // constants.js
+            export const A = 1;
+            export const B = 2;
+            export const C = 3;
+            // test1.js
+            import * as constants from './constants';
+            console.log(constants.A);
+            console.log(constants.B);
+            // test2.js
+            import { A, B } from './constants';
+            console.log(A);
+            console.log(B);
+
+    </script>
+</body>
+
+</html>
