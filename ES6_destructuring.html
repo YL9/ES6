@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ES6_destructuring</title>
+</head>
+
+<body>
+
+
+
+    <script>
+        // 模式匹配
+        var [a, b, c] = [1, 2, 3]
+        console.log(a) // 1
+        console.log(b) // 2
+        console.log(c) // 3
+
+        let [foo, [[bar], baz]] = [1, [[2], 3]]
+        console.log(foo) // 1
+        console.log(bar) // 2
+        console.log(baz) // 3
+
+        let [, , third] = ["foo", "bar", "baz"]
+        console.log(third) // baz
+
+        let [x, y] = [1, 2, 3]
+        console.log(x) // 1
+        console.log(y) // 2
+
+        let [head, ...tail] = [1, 2, 3, 4]
+        console.log(head) // 1
+        console.log(tail) // (3)[ 2, 3, 4]
+
+        let [e, f, ...g] = ['a']
+        console.log(e) // a
+        console.log(f) // undefined
+        console.log(g) // []
+
+        // 解析赋值不仅适用于 var 命令 也适用于 let 和 const 命令
+        // var [a1, a2, ...aN] = array
+        // let [b1, b2, ...bN] = array
+        // const [c1, c2, ...cN] = array
+
+        // 对于 Set 结构 也可以使用数组的解构赋值
+        let [x1, y1, z1] = new Set(["a", "b", "c"])
+        console.log(x1) // a
+
+        function* fibs() {
+            var a1 = 0
+            var b1 = 1
+            while (true) {
+                yield a1
+                [a1, b1] = [b1, a1 + b1]
+            }
+        }
+        var [first, second, third3, fourth, fifth, sixth] = fibs()
+        console.log(sixth) // 5
+
+    </script>
+</body>
+
+</html>
